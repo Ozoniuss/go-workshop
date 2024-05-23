@@ -1,0 +1,22 @@
+Topics:
+
+- packages
+- types
+- - int, float64, uint
+- - string
+- - bool
+- - arrays, slices, maps
+
+Notes:
+
+- packages and modules are not the most straightforward concepts, and perhaps
+if we discuss it it's worth diving deeper. The go get commands from the slide
+will also not work unless a module is initialized. I would not discuss this 
+the beginning, rather introduce it along the workshop as we have more code
+- I would not cover user-defined types other than structs unless we have a
+nice problem during the workshop where it has a fitting use-case
+- The variable types section is probably redundant
+- The disadvantage of global variables
+- slices are used quite often so it's worth distinguishing between uninitialized
+and initialized slices, going over length and capacity, and initializing a slice
+with a single argument
