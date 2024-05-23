@@ -10,3 +10,5 @@ package main
 // they ask only.)
 
 // structs
+
+// embedded structs? (Go's inheritance)
