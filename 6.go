@@ -39,6 +39,39 @@ func exercise6a() {
 	fmt.Println(n)
 }
 
+// Write a struct method with a pointer receiver (important to use terminology
+// here, they should get used to terminology)
+
+type MyStruct struct {
+	Name string
+}
+
+func (m MyStruct) changeNameByValue(newName string) {
+	m.Name = newName
+}
+
+func (m *MyStruct) changeNameByPointer(newName string) {
+	// Mention this!! It's syntactic sugar for the following:
+	// (*m).Name = newName
+	// And doesn't work for indexing slice pointers for instance. The following
+	// will not compile if m is a slice pointer:
+	// m[1]
+
+	m.Name = newName
+}
+
+func exercise6b() {
+	ns := MyStruct{
+		Name: "Alex",
+	}
+	// Notice that syntax is the same.
+	ns.changeNameByValue("Armand")
+	fmt.Println(ns)
+	ns.changeNameByPointer("Armand")
+	fmt.Println(ns)
+}
+
 func main() {
 	exercise6a()
+	exercise6b()
 }
