@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"slices"
 	"strings"
 )
 
@@ -53,8 +54,36 @@ func exercise4b() {
 	fmt.Println(s)
 }
 
+/*
+Before we go to map, it's important to be aware of the slices package,
+introduced in go 1.21. This contains useful slices functions. Tell them
+about this, so they add it to their internal list of packages they should
+be aware of.
+*/
+
+// Sort the items of the array 67, 11, 78, 23, 10. Ideally, find a useful
+// function that does this for you. (encourage them to find it. searching
+// for stuff without external guidance is an important skill)
+func exercise4c() {
+	numbers := []int{67, 11, 78, 23, 10}
+	slices.Sort(numbers)
+
+	fmt.Println(numbers)
+
+	// Now tell them to sort in the reverse order. This is perhaps a point where
+	// they will not be sure how to proceed, cause htere's no reverse parameter
+	// like in Python.
+
+	// Trick: negative means ascending (but I always try them out, really)
+	slices.SortStableFunc(numbers, func(a, b int) int {
+		return b - a
+	})
+
+	fmt.Println(numbers)
+}
+
 // range will go over map elements in an unspecified order
 
 func main() {
-
+	exercise4c()
 }
