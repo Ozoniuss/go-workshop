@@ -14,7 +14,7 @@ of them: int, float64, bool and string.
 Find the result of the following computation:
 153963 + 3212 - 3435 - 11132
 */
-func exercise1a() {
+func exercise2a() {
 	fmt.Println(153963 + 3212 - 3435 - 11132)
 
 	x1 := 153963
@@ -31,7 +31,7 @@ Now they should be able to do this exercise and get the correct answer:
 
 But this time around, explain the var notation.
 */
-func exercise1b() {
+func exercise2b() {
 	fmt.Println(34253 + 23 - 11242 - 9990)
 
 	var x1, x2, x3, x4 int
@@ -48,7 +48,7 @@ func exercise1b() {
 Let's do a similar ones with float:
 11.5 * 3 + 4.5 / 10
 */
-func exercise1c() {
+func exercise2c() {
 
 	// They should write this to get used to the notation and practice it.
 	var x1, x2, x3, x4 float64
@@ -63,7 +63,7 @@ func exercise1c() {
 /*
 Let's do the same, but with the short notation.
 */
-func exercise1d() {
+func exercise2d() {
 
 	// link them this https://go101.org/article/basic-types-and-value-literals.html
 	// and tell them to look for Floating point value literals.
@@ -87,12 +87,12 @@ func exercise1d() {
 
 // maybe explain string builder?
 
-func exercise2a() {
+func exercise2e() {
 }
 
 func main() {
-	exercise1a()
-	exercise1b()
-	exercise1c()
-	exercise1d()
+	exercise2a()
+	exercise2b()
+	exercise2c()
+	exercise2d()
 }
