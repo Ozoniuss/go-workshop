@@ -7,6 +7,11 @@ Useful standard library packages to know about:
 - os
 - context
 
+Useful golang glossary (words that they can use to search up stuff):
+
+- interface: https://go.dev/tour/methods/9
+- named return values: https://go.dev/doc/effective_go#named-results
+- receiver argument: https://go.dev/tour/methods/1
 
 Topics:
 
