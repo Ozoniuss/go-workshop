@@ -1,3 +1,13 @@
+Useful standard library packages to know about:
+
+- strings
+- slices
+- maps
+- encoding/json
+- os
+- context
+
+
 Topics:
 
 - packages
