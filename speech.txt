@@ -1,0 +1,2 @@
+- Walk through the Go 1.22 installation method.
+- Would be useful for them to install Go extension
