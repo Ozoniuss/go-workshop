@@ -1,3 +1,7 @@
+TODO:
+
+tests
+
 Useful standard library packages to know about:
 
 - strings
