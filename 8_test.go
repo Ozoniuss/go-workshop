@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"errors"
+	"testing"
+)
 
 func TestAddProgrammer(t *testing.T) {
 	p := Programmer{
@@ -41,7 +44,7 @@ we'd need to define some custom method for testing. Just keep this in mind.
 But, since we only used the interface methods, we can also do the following:
 */
 
-//Test_AddProgrammer_ProgrammerIsAdded
+// Test_AddProgrammer_ProgrammerIsAdded
 // test names are not a Go convention btw
 func TestAddProgrammerInterface(t *testing.T) {
 	p := Programmer{
@@ -167,6 +170,9 @@ func Test_AddProgrammer_ProgrammerIsAdded(t *testing.T) {
 // First, write a test that's red, make it green in the simplest way possible,
 // maybe even wrong way, then refactor it to be nicely. That may mean making it
 // red again, green again, then refactor. Let's put that in practice.
+//
+// Write all 3 tests at the beginning, to set the scene of how test names
+// should look like.
 
 func Test_SendToWork_HasProgrammer_ThatProgrammerIsSentToWork(t *testing.T) {
 	alex := Programmer{
@@ -202,7 +208,7 @@ func Test_SendToWork_HasProgrammer_ThatProgrammerIsSentToWork(t *testing.T) {
 	}
 
 	// expecting to send alex
-	working := pool.SendToWork("Go", 5)
+	working, _ := pool.SendToWork("Go", 5)
 	if working != alex {
 		t.Errorf("expected to send %v, got %v\n", alex, working)
 	}
@@ -219,10 +225,69 @@ func Test_SendToWork_HasProgrammer_ThatProgrammerIsSentToWork(t *testing.T) {
 	// Now the test is failed, let's do the implementation
 }
 
-func Test_SendToWork_NotEnoughYoe_NoProgrammerIsSentToWork(t *testing.T) {
+// Now, you may notice that testing is a bit awkward for the following tests.
 
+func Test_SendToWork_NotEnoughYoe_NoProgrammerIsSentToWork(t *testing.T) {
+	// Let's remove alex from the test.
+
+	armand := Programmer{
+		Name:     "Armand",
+		Language: "Go",
+		YoE:      1,
+	}
+	ioana := Programmer{
+		Name:     "Ioana",
+		Language: "Java",
+		YoE:      2,
+	}
+
+	var pool BenchPool
+	pool = NewArrayBenchPool()
+
+	// Remove alex
+	pool.AddProgrammer(armand)
+	pool.AddProgrammer(ioana)
+
+	// So now let's send a Go programmer with 5 years of experience. But
+	// we don't have one:(
+	_, err := pool.SendToWork("Go", 5)
+	// How do we test?
+	// Discussion about ways to implement this. But, to make it work nicely,
+	// introdce errors. Change the signature to accept an error.
+	if !errors.Is(err, ErrNoProgrammerAvailable) {
+		t.Errorf("expected error %v, got %v instead\n", ErrNoProgrammerAvailable, err)
+	}
 }
 
+// Let's write a quick additional test. We want an error if there is no
+// language.
 func Test_SendToWork_NoExistingLanguage_NoProgrammerIsSentToWork(t *testing.T) {
+	// Let's remove alex from the test.
 
+	armand := Programmer{
+		Name:     "Armand",
+		Language: "Go",
+		YoE:      1,
+	}
+	ioana := Programmer{
+		Name:     "Ioana",
+		Language: "Java",
+		YoE:      2,
+	}
+
+	var pool BenchPool
+	pool = NewArrayBenchPool()
+
+	pool.AddProgrammer(armand)
+	pool.AddProgrammer(ioana)
+
+	_, err := pool.SendToWork(".NET", 5)
+	// How do we test this error?.
+
+	// Now that we have the new language error, we can use a different
+	// way of checking errors.
+	var langerr InvalidLanguageError
+	if !errors.As(err, &langerr) {
+		t.Errorf("expected language error %v, got %v instead\n", ErrNoProgrammerAvailable, err)
+	}
 }

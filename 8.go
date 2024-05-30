@@ -1,6 +1,8 @@
 package main
 
 import (
+	"errors"
+	"fmt"
 	"slices"
 )
 
@@ -39,7 +41,10 @@ We're defining the behaviour we are looking for.
 type BenchPool interface {
 	AddProgrammer(p Programmer)
 	ListAllProgrammers() []Programmer
-	SendToWork(language string, minYears int) Programmer
+	// SendToWork(language string, minYears int) Programmer
+
+	// this will be changed during the workshop instead
+	SendToWork(language string, minYears int) (Programmer, error)
 }
 
 // Now let's discuss a bit about potential implementations. Probably there isn't
@@ -113,16 +118,53 @@ func (pool *MapBenchPool) ListAllProgrammers() []Programmer {
 }
 
 // Nice job! Time to write the tests.
-func (pool *MapBenchPool) SendToWork(language string, minYears int) Programmer {
-	return Programmer{}
+func (pool *MapBenchPool) SendToWork(language string, minYears int) (Programmer, error) {
+	return Programmer{}, nil
 }
 
 // Ok this seems alright. But let's set up some tests now so we can test
 // our functionality.
 // ** write the test first
-func (pool *ArrayBenchPool) SendToWork(language string, minyears int) Programmer {
+// func (pool *ArrayBenchPool) SendToWork(language string, minyears int) (Programmer, error) {
+// 	var goesToWork Programmer // the return
+// 	var location int = -1
+// 	for idx, programmer := range pool.programmers {
+// 		if programmer.Language != language {
+// 			continue
+// 		}
+// 		if programmer.YoE >= minyears {
+// 			goesToWork = programmer
+// 			location = idx
+// 			break
+// 		}
+// 	}
+// 	if location == -1 {
+// 		return Programmer{}, nil
+// 	}
+// 	pool.programmers = slices.Delete(pool.programmers, location, location+1)
+// 	return goesToWork, nil
+// }
+
+// Test should be green. Once test is green, time to introduce errors.
+
+// After going through the test and adding the signature, let's add a new error.
+
+// Explain a bit about errors and error handling in Go, in general.
+
+// Sentinel error.
+var ErrNoProgrammerAvailable = errors.New("no programmer is available")
+
+func (pool *ArrayBenchPool) SendToWork(language string, minyears int) (Programmer, error) {
 	var goesToWork Programmer // the return
 	var location int = -1
+
+	// after struct error is defined, add it here. Normally you want to use
+	// all the langugaes.
+	availableLanguages := []string{"Go", "Java"}
+	if !slices.Contains(availableLanguages, language) {
+		return Programmer{}, NewInvalidLanguageError(availableLanguages, language)
+	}
+
 	for idx, programmer := range pool.programmers {
 		if programmer.Language != language {
 			continue
@@ -134,10 +176,30 @@ func (pool *ArrayBenchPool) SendToWork(language string, minyears int) Programmer
 		}
 	}
 	if location == -1 {
-		return Programmer{}
+		// Add the error here.
+		return Programmer{}, ErrNoProgrammerAvailable
 	}
 	pool.programmers = slices.Delete(pool.programmers, location, location+1)
-	return goesToWork
+	return goesToWork, nil
 }
 
-// Test should be green. Once test is green, time to introduce errors.
+// Finally, since Error is an interface, errors can also be types. This is in
+// case you want to store contextual information.
+type InvalidLanguageError struct {
+	availableLanguages []string
+	language           string
+}
+
+func NewInvalidLanguageError(available []string, language string) InvalidLanguageError {
+	return InvalidLanguageError{
+		availableLanguages: available,
+		language:           language,
+	}
+}
+
+// Implement the error interface.
+func (err InvalidLanguageError) Error() string {
+	return fmt.Sprintf("language %s is not available. we only offer %v", err.language, err.availableLanguages)
+}
+
+// Note how this would be very nice to do with the map implementation.

@@ -1,6 +1,7 @@
 TODO:
-
-tests
+- errors
+- files (read, read line by line)
+- http (context)
 
 Useful standard library packages to know about:
 
