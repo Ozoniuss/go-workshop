@@ -203,3 +203,4 @@ func (err InvalidLanguageError) Error() string {
 }
 
 // Note how this would be very nice to do with the map implementation.
+// We will explore sending errors in a different way in the future exercises.
