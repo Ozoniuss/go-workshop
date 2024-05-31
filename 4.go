@@ -82,7 +82,8 @@ func exercise4c() {
 	fmt.Println(numbers)
 }
 
-// range will go over map elements in an unspecified order
+// range will go over map elements in an unspecified order, so if elements are
+// the same, you can expect the same
 
 func main() {
 	exercise4c()
