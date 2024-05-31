@@ -85,6 +85,27 @@ func exercise4c() {
 // range will go over map elements in an unspecified order, so if elements are
 // the same, you can expect the same
 
+// Use a map to track the number of occurences of each string in the following
+// array. Then, print each string, alongside the number of occurences.
+
+// Alex, Armand, Andrei, Andrei, Iulia, Andrei, Andrei
+
+func exercise4d() {
+	names := []string{"Alex", "Armand", "Andrei", "Andrei", "Iulia"}
+	freq := make(map[string]int)
+
+	for _, name := range names {
+		freq[name]++
+	}
+
+	// Please make sure to mention unspecified order
+	for key, val := range freq {
+		fmt.Printf("%s appears %d times\n", key, val)
+	}
+
+}
+
 func main() {
-	exercise4c()
+	// exercise4c()
+	exercise4d()
 }
