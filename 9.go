@@ -50,7 +50,6 @@ func exercise9a() {
 
 func exercise9b() {
 	// Let's explore creating a file. Make sure to go into the function.
-
 	f, err := os.Create("91.txt")
 	if err != nil {
 		fmt.Printf("could not create file: %s\n", err.Error())

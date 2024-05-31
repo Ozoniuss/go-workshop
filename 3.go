@@ -12,3 +12,11 @@ package main
 // structs
 
 // embedded structs? (Go's inheritance)
+
+func example3a() {
+
+}
+
+func main() {
+
+}

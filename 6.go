@@ -56,6 +56,7 @@ func (m *MyStruct) changeNameByPointer(newName string) {
 	// And doesn't work for indexing slice pointers for instance. The following
 	// will not compile if m is a slice pointer:
 	// m[1]
+	// this is called pointer indirection
 
 	m.Name = newName
 }

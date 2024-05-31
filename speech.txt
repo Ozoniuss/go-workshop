@@ -1,2 +1,31 @@
-- Walk through the Go 1.22 installation method.
-- Would be useful for them to install Go extension
+- Introduce yourself
+- developer at snyk
+- in my free time, exploring things such as language internals,
+  devops, working with servers things like that
+- and I play guitar. which is a hobby I'm trying to take seriously, but fail
+
+- favourite language is unsurprisingly Go, least favourite language is Java (although
+  typescript is kinda close)
+- today, we're thankfully going to talk about Go.
+
+- ive been using Go for about 3 years now, but taking it seriously for
+  probably the past two years, after the startup I worked at failed and I 
+  bhad to find a Go developer job
+- Seriously, those Go interviews are way more technical than they should be.
+
+- Unlike most interviews I've  been at, we're going to look at language features
+  that are actually useful and I hope that by the time we're done with this 
+  workshop you are going to be familiar enough with the language, such that 
+  you can answer most Go-related questions alone.
+
+- This isn't going to be simply a presentation about Go where I explain a bunch of 
+  things about the language. There are plenty of those available online, and 
+  most of them do a much better job than I do. Rather, I'm hoping for this to 
+  be an interactive experience, in which we code together, solve problems
+  together and build our Go-developer mindset together. And this is extremely
+  imporatnt, I'll try to focus on the mindset a lot, as, in my experience I find
+  that this is the most common trait amongst successful Go developers, and not 
+  necessarily the amount of knowlledge they have about the language. I'll put
+  a lot of focus on what I'm thinking about when I walk together with you through
+  the workshop problems and I'll share that with you, and I hope it helps you 
+  build some reflexes as Go developers that will help you in the long run.

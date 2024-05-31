@@ -1,6 +1,4 @@
 TODO:
-- errors
-- files (read, read line by line)
 - http (context)
 
 Useful standard library packages to know about:
@@ -12,11 +10,16 @@ Useful standard library packages to know about:
 - os
 - context
 
+Installation:
+- golang 1.22
+- curl
+
 Useful golang glossary (words that they can use to search up stuff):
 
 - interface: https://go.dev/tour/methods/9
 - named return values: https://go.dev/doc/effective_go#named-results
-- receiver argument: https://go.dev/tour/methods/1
+- receiver argument (from where value and pointer receivers comes from): https://go.dev/tour/methods/1
+- pointer indirection:https://go.dev/tour/methods/6
 
 Topics:
 
